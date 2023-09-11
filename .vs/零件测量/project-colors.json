@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "42ae3774-49a1-4d99-acd2-ae7b541c814b": {
+      "ProjectGuid": "42ae3774-49a1-4d99-acd2-ae7b541c814b",
+      "DisplayName": "零件测量",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

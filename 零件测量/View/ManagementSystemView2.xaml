@@ -1,0 +1,124 @@
+﻿<Window x:Class="WpfApp1.View.ManagementSystemView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:WpfApp1.View"
+        mc:Ignorable="d"
+        Height="800" Width="1200" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
+        FontFamily="Microsoft YaHei" FontWeight="ExtraLight" SizeChanged="Window_SizeChanged">
+    <Window.Resources>
+        <ControlTemplate TargetType="Button" x:Key="CloseButtonTemplate">
+            <Border Background="Transparent" Name="close">
+                <Path Data="M0 0 12 12M0 12 12 0  " Stroke="#E8EAF6" StrokeThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers >
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter TargetName="close" Property="Background" Value="#22FFFFFF"/>
+                    <Setter TargetName="close" Property="ToolTip" Value="关闭"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="close" Property="Background" Value="#44FFFFFF"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="MaximumButtonTemplate">
+            <Border Background="Transparent" Name="maximum">
+                <Path Data="M0 0 12 0M12 0 12 12 M12 12 0 12M0 12 0 0 " Stroke="#E8EAF6" StrokeThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers >
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter TargetName="maximum" Property="Background" Value="#22FFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="maximum" Property="Background" Value="#44FFFFFF"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="MinimumButtonTemplate">
+            <Border Background="Transparent" Name="minimum">
+                <Path Data="M0 4 14 4" Stroke="#E8EAF6" StrokeThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers >
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter TargetName="minimum" Property="Background" Value="#22FFFFFF"/>
+                    <Setter TargetName="minimum" Property="ToolTip" Value="最小化"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="minimum" Property="Background" Value="#44FFFFFF"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="NavigationButtonTemplate">
+            <Border Background="Transparent"  Height="30" Width="90" Name="navigate">
+                <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Foreground="{TemplateBinding Foreground }" FontSize="{TemplateBinding FontSize}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter TargetName="navigate" Property="Background" Value="#22FFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="navigate" Property="Background" Value="#44FFFFFF"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="HueModeButtonTemplate">
+            <Border Background="Transparent"  Height="30" Width="45" Name="mode">
+                <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground }" FontSize="{TemplateBinding FontSize}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter TargetName="mode" Property="Background" Value="#22FFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="mode" Property="Background" Value="#44FFFFFF"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Viewbox Stretch="Uniform">
+            <Canvas Width="1200" Height="800">
+                <Rectangle Fill="{DynamicResource PrimaryHueMidBrush}" Width=" 1200" Height="150" Opacity="0.95"/>
+                <Rectangle Fill="{DynamicResource SecondaryAccentForegroundBrush}" Margin="0,150" Height="650" Width="1200" Opacity="0.95"/>
+                <Button x:Name="CloseButton" Template="{StaticResource CloseButtonTemplate}" Height="30" Width="45" Margin="1155,0" Click="CloseButton_Click" />
+                <Button x:Name="MaximumButton" ToolTip="最大化" Template="{StaticResource MaximumButtonTemplate}" Height=" 30" Width=" 45" Margin="1110,0" Click="MaximumButton_Click"/>
+                <Button x:Name="MinimumButton" Template="{StaticResource MinimumButtonTemplate}" Height=" 30" Width=" 45" Margin="1065,0" Click="MinimumButton_Click"/>
+                <Button x:Name="NavigateButtonLeft" Content="人事管理" Foreground="{DynamicResource SecondaryAccentForegroundBrush}" FontSize="16"
+                        Template="{StaticResource NavigationButtonTemplate}" Margin="25,25" Click="NavigateButtonLeft_Click"/>
+                <Button x:Name="NavigateButtonCenter" Content="签到管理" Foreground="{DynamicResource SecondaryAccentForegroundBrush}" FontSize="16"
+                        Template="{StaticResource NavigationButtonTemplate}" Margin="120,25" Click="NavigateButtonCenter_Click"/>
+                
+                <Line x:Name="Bar" X1="25" Y1="65" X2="115" Y2="65" StrokeThickness="4" StrokeEndLineCap="Triangle" StrokeStartLineCap="Triangle">
+                    <Line.Stroke>
+                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,1.5" Opacity="0.8">
+                            <GradientStop Offset="0.0" Color="#3949AB"/>
+                            <GradientStop Offset="0.4" Color="#E8EAF6"/>
+                            <GradientStop Offset="0.6" Color="#304FFE"/>
+                            <GradientStop Offset="0.8" Color="#1A237E"/>
+                        </LinearGradientBrush>
+                    </Line.Stroke>
+                    <Line.RenderTransform>
+                        <TranslateTransform x:Name="tt" X="0" Y="0"/>
+                    </Line.RenderTransform>
+                    <Line.Effect>
+                        <DropShadowEffect Opacity="0.2"/>
+                    </Line.Effect>
+                </Line>
+                
+                <Button x:Name="DayModeButton" Template="{StaticResource HueModeButtonTemplate}" Content="&#xe663;" FontFamily=" ../Assets/Fonts/#iconfont" FontSize="20"
+                        Foreground="{DynamicResource SecondaryAccentForegroundBrush}" ToolTip="日间模式" Margin="1020,0" Visibility="Hidden" IsEnabled="False" Click="DayModeButton_Click"/>
+                
+               
+                
+            </Canvas>
+        </Viewbox>
+    </Grid>
+</Window>
